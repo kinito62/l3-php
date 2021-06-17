@@ -6,22 +6,23 @@ use App\Entity\EntityInterface;
 
 interface RepositoryInterface
 {
+
     /**
      * @return EntityInterface[]
      */
-    public function findAll() : array;
+    public function findAll();
 
     /**
-     * @param int $id
+     * @param $id
      * @return EntityInterface
      */
-    public function find(int $id) :  EntityInterface;
+    public function find($id);
 
     /**
      * @param $column
      * @param $value
-     * @return EntityInterface[]
+     * @return EntityInterface
      */
-    public function findBy($column, $value): array;
+    public function findBy($column, $value);
 
 }

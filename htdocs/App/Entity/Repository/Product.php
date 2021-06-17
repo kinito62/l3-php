@@ -4,31 +4,59 @@ namespace App\Entity\Repository;
 
 use App\Entity\EntityInterface;
 
-class Product implements RepositoryInterface
+class Product extends AbstractRepository implements RepositoryInterface
 {
+
     /**
      * @return EntityInterface[]
      */
-    public function findAll() : array
+    public function findAll()
     {
-        //TODO return all row from table
+        $products = [];
+
+        foreach ($this->getConnexion()->query('SELECT * from products') as $row) {
+            $product = new \App\Entity\Product($row['name'], $row['price']);
+            array_push($products, $product);
+        }
+
+        return $products;
     }
 
     /**
-     * @param int $id
-     * @return \App\Entity\Product
+     * @param $id
+     * @return EntityInterface
      */
-    public function find(int $id) : EntityInterface
+    public function find($id)
     {
-        //TODO return produit filtré par id
+        $request = $this->getConnexion()->prepare("SELECT * FROM products WHERE id = :id");
+        $request->bindParam(':id', $id);
+        $request->execute();
+        $result = $request->fetch();
+
+        if ($result != null) {
+            return new \App\Entity\Product($result['name'], $result['price']);
+        }
+
+        return null;
     }
 
     /**
-     * @param int $id
+     * @param $column
+     * @param $value
      * @return EntityInterface[]
      */
-    public function findBy($column, $value) : array
+    public function findBy($column, $value)
     {
-        //TODO return produit filtré par id
+        $sql = "SELECT * FROM products WHERE {$column} LIKE '{$value}'";
+        $request = $this->getConnexion()->prepare($sql);
+        $request->execute();
+        $result = $request->fetch();
+
+        if ($result != null) {
+            return new \App\Entity\Product($result['name'], $result['price']);
+        }
+
+        return null;
     }
+
 }

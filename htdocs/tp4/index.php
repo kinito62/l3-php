@@ -9,5 +9,3 @@ Autoload::register();
 
 $router = new Router();
 $router->process();
-
-echo "noooooo";

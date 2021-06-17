@@ -1,63 +1,35 @@
 <?php
 
-
 class Router
 {
 
-    /**
-     *
-     */
+    function process() {
+        $uri = $_SERVER['REQUEST_URI'];
+        $uri = str_replace('/l3-php/htdocs/tp4/index.php', '', $uri);
 
+        $json = file_get_contents('routes.json');
+        $data = json_decode($json, TRUE);
+        $route = false;
 
-    function process()
-    {
-        $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
-        // Route it up!
-        switch ($request_uri[0]) {
-            // Home page
-            case '/':
-                require '../tp3/index.php';
-                break;
-            // About page
-            case '/about':
-                require '../tp3/catalogue.php';
-                break;
-            // Everything else
-            default:
-                header('HTTP/1.0 404 Not Found');
-                require '../tp4/index.php';
-                break;
+        if ($uri == '') {
+            $uri = '/';
         }
-        /**
-         * ex http://localhost/
-         *
-         * $uri = /
-         */
 
-        /**
-         * ex http://localhost/catalog
-         *
-         * $uri = /catalog
-         */
+        foreach($data as $value) {
+            if ($value['path'] == $uri) {
+                $route = true;
+                $controller = $value['controller'];
+                $controller = explode('@', $controller);
+            }
+        }
 
-        /**
-         * ex http://localhost/catalog/product
-         *
-         * $uri = /catalog/product
-         */
-        $uri = "";
+        if(!$route) {
+            return http_response_code(404);
+        }
 
-        /**
-         * mapping entre $uri et routes.json
-         * Prevoir route non connue => 404
-         */
-
-
-
-        /**
-         * instance controller de la route appel de la methode
-         */
-
+        $class = "\App\Controller\\" . $controller[0];
+        $class = new $class();
+        $method = $controller[1];
+        return $class->$method();
     }
-
 }

@@ -1,0 +1,22 @@
+{
+
+  "home" : {
+    "path" : "/l3-php/htdocs/TP5/index.php",
+    "controller" : "App\\Controller\\HomeController@home"
+  },
+
+  "catalog" : {
+    "path" : "/l3-php/htdocs/TP5/index.php/catalog",
+    "controller" : "App\\Controller\\CatalogController@view"
+  },
+
+  "catalog_product" : {
+    "path" : "/l3-php/htdocs/TP5/index.php/catalog/product",
+    "controller" : "App\\Controller\\CatalogController@viewProduct"
+  },
+
+  "notFound": {
+    "controller": "App\\Controller\\NotFoundController@error404"
+  }
+
+}

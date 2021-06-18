@@ -15,6 +15,11 @@
     "controller" : "App\\Controller\\CatalogController@viewProduct"
   },
 
+  "TODO" : {
+    "path" : "/l3-php/htdocs/index.php/TODO",
+    "controller" : "App\\Controller\\TodoController@view"
+  },
+
   "notFound": {
     "controller": "App\\Controller\\NotFoundController@error404"
   }

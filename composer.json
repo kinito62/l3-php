@@ -2,11 +2,6 @@
     "name": "l3/web",
     "description": "Projet L3 Web Avanc",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "L3\\Web\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "kinito62",

@@ -1,55 +1,68 @@
 <?php
 
+
 namespace App\Entity;
 
 class Customer implements EntityInterface
 {
-    public function findAll()
+
+    private $prenom;
+    private $nom;
+    private $adresse;
+
+
+    public function __construct($prenom, $nom, $adresse)
     {
-        $products = [];
-
-        foreach ($this->getConnexion()->query('SELECT * from products') as $row) {
-            $product = new \App\Entity\Product($row['name'], $row['prenom']);
-            array_push($products, $product);
-        }
-
-        return $products;
+        $this->prenom = $prenom;
+        $this->nom = $nom;
+        $this->adresse = $adresse;
     }
 
     /**
-     * @param $id
-     * @return EntityInterface
+     * @return mixed
      */
-    public function find($id)
+    public function getprenom()
     {
-        $request = $this->getConnexion()->prepare("SELECT * FROM products WHERE id = :id");
-        $request->bindParam(':id', $id);
-        $request->execute();
-        $result = $request->fetch();
-
-        if ($result != null) {
-            return new \App\Entity\Product($result['name'], $result['price']);
-        }
-
-        return null;
+        return $this->prenom;
     }
 
     /**
-     * @param $column
-     * @param $value
-     * @return EntityInterface[]
+     * @param mixed $price
      */
-    public function findBy($column, $value)
+    public function setprenom($prenom): void
     {
-        $sql = "SELECT * FROM products WHERE {$column} LIKE '{$value}'";
-        $request = $this->getConnexion()->prepare($sql);
-        $request->execute();
-        $result = $request->fetch();
+        $this->prenom = $prenom;
+    }
 
-        if ($result != null) {
-            return new \App\Entity\Product($result['name'], $result['price']);
-        }
+    /**
+     * @return mixed
+     */
+    public function getnom()
+    {
+        return $this->nom;
+    }
 
-        return null;
+    /**
+     * @param mixed
+     */
+    public function setnom($nom): void
+    {
+        $this->nom = $nom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * @param mixed
+     */
+    public function setAddress($adresse): void
+    {
+        $this->adresse = $adresse;
     }
 }

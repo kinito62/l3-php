@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 
-//require "testbdd.php";
+require "testbdd.php";
 
 class CatalogController extends AbstractController
 {

@@ -23,16 +23,15 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // CREATE TABLE
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = "CREATE TABLE IF NOT EXISTS clients(
+$sql = "CREATE TABLE IF NOT EXISTS products(
      ID INT(11) AUTO_INCREMENT PRIMARY KEY,
-     prenom VARCHAR(50) NOT NULL, 
-     nom VARCHAR(50) NOT NULL,
-     adresse VARCHAR(250) NOT NULL);";
+     nom VARCHAR(50) NOT NULL, 
+     price VARCHAR(50) NOT NULL;";
 $db->exec($sql);
 print("Table créée.\n");
 
 // INSERT
-$insert = "INSERT INTO clients(prenom, nom, adresse) VALUES('Damien', 'Clairet', '160 rue des pommes, 62510 Arques')";
+$insert = "INSERT INTO products(nom, price) VALUES('Tapis', '100')";
 $request = $db->prepare($insert);
 $request->execute();
 

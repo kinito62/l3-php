@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Welcome Home !{% endblock %}
+
+{% block body %}
+
+    <h1>Catalog products : </h1>
+
+    <ul>
+        {% for user in OneProduct%}
+            <li>{{ user.Name|e }} : {{ user.Price|e }}</li>
+        {% endfor %}
+    </ul>
+
+
+{% endblock %}

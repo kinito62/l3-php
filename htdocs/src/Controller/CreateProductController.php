@@ -19,13 +19,27 @@ class CreateProductController extends AbstractController
     /**
      * @Route ("/catalog/createproduct", name="create_product")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $product = new Products();
+        $form = $this->createForm(CreateProductType::class,$product);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $product = $form->getData();
 
-        $form = $this->createForm(UserType::class);
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($product);
+            $entityManager->flush();
 
+            return $this->redirectToRoute('create_product');
+        }
         return $this->render('create_product.html.twig', [
             'controller_name' => 'CreateProductController',
+            'form' => $form->createView()
         ]);
     }
 

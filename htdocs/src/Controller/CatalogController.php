@@ -41,8 +41,4 @@ class CatalogController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route ("/catalog/product", name="product")
-     */
-
 }

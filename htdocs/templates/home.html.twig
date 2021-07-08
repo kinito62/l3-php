@@ -1,5 +1,26 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Welcome Home !{% endblock %}
+{% block title %}Home Page{% endblock %}
 
-{% block body %}Coucou 2{% endblock %}
+{% block body %}
+
+    <p>Bonjour, </p><p>et bienvenue sur notre site de pronostic.</p>
+
+    <p>Sur ce site vous allez pouvoir faire des pronostics pour gagner des points</p>
+
+    <p>et peut-être remporter le championnat !</p>
+
+    <p>Veuillez créer un compte pour commencer les pronostics.</p>
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% else %}
+        <button class="btn btn-lg btn-primary" type="submit">
+            Connexion
+        </button>
+    {% endif %}
+
+
+{% endblock %}

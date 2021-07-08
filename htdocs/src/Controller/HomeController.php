@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use PHPUnit\Util\Test;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,24 +15,27 @@ class HomeController extends AbstractController
     /**
      * @Route ("/", name="home")
      */
-    public function view(TestRepository $testRepository) : Response
+    public function view() : Response
     {
-        $en = $this->getDoctrine()->getManager();
+        //$en = $this->getDoctrine()->getManager();
 
-        $test = new Test();
-        $test->setName('Tapis');
-        $test->setPrice('64');
+    //$test = new Test();
+    //$test->setName('Tapis');
+    //$test->setPrice('64');
 
-        $en->persist($test);
-        $en->flush();
+    //$en->persist($test);
+    //$en->flush();
 
-        $productRepository = $this->getDoctrine()->getRepository(Test::class);
-        $tests = $productRepository->findBy(['name' =>'Tapis']);
-        var_dump(tests);
-        die;
+    //$productRepository = $this->getDoctrine()->getRepository(Test::class);
+    //$tests = $productRepository->findBy(['name' =>'Tapis']);
+    //var_dump(tests);
 
         return $this->render("home.html.twig");
 
     }
+
+
+
+
 
 }

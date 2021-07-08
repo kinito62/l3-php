@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Products;
+use App\Entity\Pari;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Products|null find($id, $lockMode = null, $lockVersion = null)
- * @method Products|null findOneBy(array $criteria, array $orderBy = null)
- * @method Products[]    findAll()
- * @method Products[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Pari|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Pari|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Pari[]    findAll()
+ * @method Pari[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProductsRepository extends ServiceEntityRepository
+class PariRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Products::class);
+        parent::__construct($registry, Pari::class);
     }
 
     // /**
-    //  * @return Products[] Returns an array of Products objects
+    //  * @return Pari[] Returns an array of Pari objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ProductsRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Products
+    public function findOneBySomeField($value): ?Pari
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

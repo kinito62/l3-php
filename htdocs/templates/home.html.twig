@@ -1,49 +1,95 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Home Page{% endblock %}
+{% block title %}Parier en ligne sur le numéro 1 des pari Sportif à l'ulco | Betflic{% endblock %}
 
 {% block body %}
-
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #4f805d;">
+    <ul class="nav justify-content-center" style="background-color: black;">
+        <li class="nav-item" style="color: white">
+            <p>Famille, vie social,santé financière. Etes-VOUS PRÊT A TOUT MISER ?</p>
+            <p>POUR ÊTRE AIDE, APPELEZ LE 09-74-75-13-13 (appel non surtaxé)</p>
+        </li>
+    </ul>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: red;">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand " href="http://localhost/l3-php/htdocs/public/index.php/" style="color: white">BetFlic</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Compte</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pari sportif</a>
-                    </li>
-                </ul>
+                {% if app.user %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/l3-php/htdocs/public/index.php/match" style="color: white">Pari sportif</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/l3-php/htdocs/public/index.php/profil" style="color: white">Compte</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/l3-php/htdocs/public/index.php/contact" style="color: white">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/l3-php/htdocs/public/index.php/classement" style="color: white">Classement des joueurs</a>
+                        </li>
+                    </ul>
+
+                {% else %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/l3-php/htdocs/public/index.php/match" style="color: white">Pari sportif</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/l3-php/htdocs/public/index.php/contact" style="color: white">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/l3-php/htdocs/public/index.php/classement" style="color: white">Classement des joueurs</a>
+                        </li>
+                    </ul>
+                {% endif %}
+
             </div>
         </div>
     </nav>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4" style="text-align: center; background-color: antiquewhite">
+                <p>Bonjour, </p><p>Bienvenue sur notre site de pronostic.</p>
+
+                <p>Sur ce site vous allez pouvoir faire des pronostics pour gagner des points</p>
+
+                <p>et peut-être remporter le championnat !</p>
 
 
-    <p>Bonjour, </p><p>et bienvenue sur notre site de pronostic.</p>
+                {% if app.user %}
 
-    <p>Sur ce site vous allez pouvoir faire des pronostics pour gagner des points</p>
 
-    <p>et peut-être remporter le championnat !</p>
+                    <p>Pour commencer a faire des pronostic et regarder les différents match de l'EURO 2021, cliquer sur "pari sportif" et commencer a devenir notre grand champion des pronostic</p>
+                    <p>Pour consulter votre comptes cliquer sur compte</p>
+                    <div class="mb-3">
+                        Vous êtes connecté avec {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    </div>
+                {% else %}
+                    <p>Pour consulter les différents match cliquer sur le bonton Pari sportif</p>
 
-    <p>Veuillez créer un compte pour commencer les pronostics.</p>
+                    <p>Veuillez créer un compte ou vous connecter pour commencer les pronostics.</p>
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    <a href="http://localhost/l3-php/htdocs/public/index.php/login" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Connexion</a>
+                    <a href="http://localhost/l3-php/htdocs/public/index.php/register" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Inscription</a>
+
+                    <br>
+                    <br>
+                {% endif %}</div>
+            <div class="col-4"></div>
         </div>
-    {% else %}
-        <button class="btn btn-lg btn-primary" type="submit">
-            Connexion
-        </button>
-    {% endif %}
+    </div>
+
+
 
 
 {% endblock %}

@@ -1,37 +1,102 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilController!{% endblock %}
+{% block title %}Votre profil{% endblock %}
 
 {% block body %}
+    <ul class="nav justify-content-center" style="background-color: black;">
+        <li class="nav-item" style="color: white">
+            <p>Famille, vie social,santé financière. Etes-VOUS PRÊT A TOUT MISER ?</p>
+            <p>POUR ÊTRE AIDE, APPELEZ LE 09-74-75-13-13 (appel non surtaxé)</p>
+        </li>
+    </ul>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: red;">
+        <div class="container-fluid">
+            <a class="navbar-brand " href="http://localhost/l3-php/htdocs/public/index.php/" style="color: white">BetFlic</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% if app.user %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/l3-php/htdocs/public/index.php/match" style="color: white">Pari sportif</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/l3-php/htdocs/public/index.php/profil" style="color: white">Compte</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/l3-php/htdocs/public/index.php/contact" style="color: white">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/l3-php/htdocs/public/index.php/classement" style="color: white">Classement des joueurs</a>
+                        </li>
+                    </ul>
+
+                {% else %}
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://localhost/l3-php/htdocs/public/index.php/match" style="color: white">Pari sportif</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/l3-php/htdocs/public/index.php/contact" style="color: white">Contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="http://localhost/l3-php/htdocs/public/index.php/classement" style="color: white">Classement des joueurs</a>
+                        </li>
+                    </ul>
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
 <div class="example-wrapper">
-    <p>Bienvenue sur la page de votre profile</p>
-    <p>Voici vos différents pronostic : </p>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4" style="text-align: center; background-color: antiquewhite">
+                <p>Bienvenue sur la page de votre profile</p>
+                <p>Voici vos différents pronostic : </p>
+                {% if prono is defined %}
     {% for pronos in prono %}
 
 
         <p>-------------------------------------</p>
         {% if 'now'|date('Y-m-d H-m-s', "Europe/Paris") < match[pronos.getIdMatch()].date|date('Y-m-d H-m-s', "Europe/Paris") %}
-            <li><p>Pari n°{{pronos.getId()}} </p></li>
-            <li><p>Score domicile ({{match[pronos.getIdMatch()].teams.domicile}}) : {{ pronos.ScoreD }}</p>
-            <li><p>Score Extérieur ({{match[pronos.getIdMatch()].teams.exterieur}}): {{ pronos.ScoreE }}</p>
+            <p>Pari n°{{pronos.getId()}} </p>
+            <p>Score domicile ({{match[pronos.getIdMatch()].teams.domicile}}) : {{ pronos.ScoreD }}</p>
+            <p>Score Extérieur ({{match[pronos.getIdMatch()].teams.exterieur}}): {{ pronos.ScoreE }}</p>
         {% else%}
-            <li><p>Pari n°{{pronos.getId()}} </p></li>
-            <li><p>Score domicile ({{match[pronos.getIdMatch()].teams.domicile}}) : {{ pronos.ScoreD }}</p>
-            <li><p>Score Extérieur ({{match[pronos.getIdMatch()].teams.exterieur}}): {{ pronos.ScoreE }}</p>
+            <p>Pari n°{{pronos.getId()}} </p>
+            <p>Score domicile ({{match[pronos.getIdMatch()].teams.domicile}}) : {{ pronos.ScoreD }}</p>
+            <p>Score Extérieur ({{match[pronos.getIdMatch()].teams.exterieur}}): {{ pronos.ScoreE }}</p>
         {% endif %}
 
 
     {% endfor %}
+
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
 <br>
 <br>
 <h3 style="text-align: center">Le nombre total de vos points est de : {{ nbpoints }}</h3>
 <h3 style="text-align: center">Vous êtes au rang : {{ classement }}</h3>
 
+    {% else%}
+        <h3 style="text-align: center">Le nombre total de vos points est de : 0</h3>
+    {% endif %}
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Hello ClassementController!{% endblock %}
+{% block title %}Catalog{% endblock %}
 
 {% block body %}
     <ul class="nav justify-content-center" style="background-color: black;">
@@ -55,27 +55,14 @@
     </nav>
     <br>
     <br>
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<div class="container">
-    <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4" style="text-align: center; background-color: antiquewhite">
-<div class="example-wrapper" style="text-align: center">
+    <div class="container">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4" style="text-align: center; background-color: antiquewhite">
+    {{ form(form) }}
 
-<h1>Le classement des différents joueurs :</h1>
-    <br>
-    <br>
-    {% for key,classement in array %}
-        <p>Rang : {{ key+1 }}</p>
-    <p>Joueur : {{classement.user.getEmail()}} </p>
-    <p>Score : {{classement.score}} </p>
-    <p>----------------------------------------</p>
-    {% endfor %}
-</div></div>
-        <div class="col-4"></div>
     </div>
-</div>
+    <div class="col-4"></div>
+    </div>
+    </div>
 {% endblock %}

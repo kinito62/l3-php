@@ -33,3 +33,5 @@ C'est à dire :
   - 0 points si pronostique faux
   - 1 points si le pronostic donne la bonne équipe gagnantemaispas le bon score
   - 3 point si le pronostic donne la bonne équipe gagnanteETle bon score
+
+J'ai ajouter la base de donnée à la racine dans le dépot

@@ -27,6 +27,8 @@ C'est à dire :
   
   Le classement des différents joueurs sont visible par tous et vous pouvez retrouver ce classement dans l'onglet classement.
   
+  Il y a aussi une page contact qui permet d'envoyer un message au staff. Les message sont ensuite renseigner dans la base de données.
+  
   Voici la régle de calcul pour calculer les points de tout les joueurs : 
   
   Pour calculer les points :
@@ -34,4 +36,4 @@ C'est à dire :
   - 1 points si le pronostic donne la bonne équipe gagnantemaispas le bon score
   - 3 point si le pronostic donne la bonne équipe gagnanteETle bon score
 
-J'ai ajouter la base de donnée à la racine dans le dépot
+J'ai ajouter la base de données à la racine dans le dépot
